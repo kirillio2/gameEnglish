@@ -1,85 +1,80 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Угадай слово</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1 class="mb-4">Угадай слово</h1>
-    <div id="word-display" class="mb-3"></div>
-    <input type="text" id="guess-input" class="form-control mb-3" placeholder="Введите перевод слова">
-    <button id="check-btn" class="btn btn-primary me-2">Проверить</button>
-    <button id="next-btn" class="btn btn-secondary">Следующее слово</button>
-    <div id="result" class="mt-3"></div>
-  </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title mb-4">Угадай слово</h1>
+                <div id="question" class="mb-3"></div>
+                <div id="options"></div>
+                <div id="answer" class="mt-3"></div>
+                <button id="nextButton" class="btn btn-primary mt-3" onclick="nextQuestion()">Следующий вопрос</button>
+            </div>
+        </div>
+    </div>
 
-  <script>
-    // Ваш список слов
-    const words = [
-  { russian: 'идти', english: 'go', forms: ['went', 'gone'], transcription: '(гөу уент гон)' },
-  { russian: 'приходить', english: 'come', forms: ['came', 'come'], transcription: '(кам кейм кам)' },
-  { russian: 'поворачивать', english: 'turn', forms: ['turned', 'turned'], transcription: '(төрн)' },
-  { russian: 'бежать', english: 'run', forms: ['ran', 'run'], transcription: '(ран рән ран)' },
-  { russian: 'двигать (-ся)', english: 'move', forms: ['moved', 'moved'], transcription: '(мув)' },
-  { russian: 'приносить', english: 'bring', forms: ['brought', 'brought'], transcription: '(бріэң броут броут)' },
-  { russian: 'сидеть', english: 'sit', forms: ['sat', 'sat'], transcription: '(сіэт сәт сәт)' },
-  { russian: 'стоять', english: 'stand', forms: ['stood', 'stood'], transcription: '(стәнд)' },
-  { russian: 'следовать', english: 'follow', forms: ['followed', 'followed'], transcription: '(фолоу)' },
-  { russian: 'останавливать', english: 'stop', forms: ['stopped', 'stopped'], transcription: '(стoп)' },
-  { russian: 'ходить (гулять)', english: 'walk', forms: ['walked', 'walked'], transcription: '(уок)' },
-  { russian: 'появляться', english: 'appear', forms: ['appeared', 'appeared'], transcription: '(әпиә)' },
-  { russian: 'исчезать', english: 'disappear', forms: ['disappeared', 'disappeared'], transcription: '(дизәпиә)' },
-  { russian: 'оставаться', english: 'remain', forms: ['remained', 'remained'], transcription: '(римейн)' },
-  { russian: 'уходить', english: 'leave', forms: ['left', 'left'], transcription: '(лив, лефт)' },
-  { russian: 'поднимать (-ся)', english: 'raise', forms: ['raised', 'raised'], transcription: '(рейз)' },
-  { russian: 'нести', english: 'carry', forms: ['carried', 'carried'], transcription: '(кәри)' },
-  { russian: 'вести машину', english: 'drive', forms: ['drove', 'driven'], transcription: '(драйв дроув дривән)' }
-  ];
+    <script>
+        const vocabulary = [
+            { question: "Вопрос: идти", options: ["go", "come", "run", "walk"], correctAnswer: "go" },
+            { question: "Вопрос: приходить", options: ["go", "come", "run", "walk"], correctAnswer: "come" },
+            { question: "Вопрос: поворачивать", options: ["turn", "move", "stand", "stop"], correctAnswer: "turn" },
+            { question: "Вопрос: бежать", options: ["go", "come", "run", "walk"], correctAnswer: "run" },
+            { question: "Вопрос: двигать (-ся)", options: ["turn", "move", "stand", "stop"], correctAnswer: "move" },
+            { question: "Вопрос: приносить", options: ["bring", "sit", "stand", "follow"], correctAnswer: "bring" },
+            { question: "Вопрос: сидеть", options: ["bring", "sit", "stand", "follow"], correctAnswer: "sit" },
+            { question: "Вопрос: стоять", options: ["bring", "sit", "stand", "follow"], correctAnswer: "stand" },
+            { question: "Вопрос: следовать", options: ["bring", "sit", "stand", "follow"], correctAnswer: "follow" },
+            { question: "Вопрос: остановиться (-ся)", options: ["move", "stop", "walk", "run"], correctAnswer: "stop" },
+            { question: "Вопрос: ходить (гулять)", options: ["go", "walk", "run", "come"], correctAnswer: "walk" }
+        ];
 
-    let currentWordIndex;
+        let currentQuestion = 0;
 
-    function getRandomWord() {
-      return words[Math.floor(Math.random() * words.length)];
-    }
+        function displayQuestion() {
+            const questionElement = document.getElementById("question");
+            const optionsElement = document.getElementById("options");
+            questionElement.innerHTML = `<h3 class="card-title">${vocabulary[currentQuestion].question}</h3>`;
+            optionsElement.innerHTML = "";
+            vocabulary[currentQuestion].options.forEach(option => {
+                const optionButton = document.createElement("button");
+                optionButton.className = "btn btn-outline-primary me-2 mb-2";
+                optionButton.textContent = option;
+                optionButton.addEventListener("click", () => checkAnswer(option));
+                optionsElement.appendChild(optionButton);
+            });
+        }
 
-    function displayWord() {
-      const word = getRandomWord();
-      currentWordIndex = words.indexOf(word);
-      document.getElementById('word-display').innerHTML = `
-        <p><strong>Слово на русском:</strong> ${word.russian}</p>
-        <p><strong>Транскрипция:</strong> ${word.transcription}</p>
-      `;
-    }
+        function checkAnswer(selectedOption) {
+            const answerElement = document.getElementById("answer");
+            if (selectedOption === vocabulary[currentQuestion].correctAnswer) {
+                answerElement.innerHTML = `<div class="alert alert-success" role="alert">Правильно!</div>`;
+            } else {
+                answerElement.innerHTML = `<div class="alert alert-danger" role="alert">Неправильно. Правильный ответ: ${vocabulary[currentQuestion].correctAnswer}</div>`;
+            }
+            document.getElementById("nextButton").disabled = false;
+        }
 
-    function checkGuess() {
-      const guess = document.getElementById('guess-input').value.trim().toLowerCase();
-      const word = words[currentWordIndex];
-      if (guess === word.english.toLowerCase()) {
-        document.getElementById('result').innerHTML = '<p class="text-success">Правильно!</p>';
-      } else {
-        document.getElementById('result').innerHTML = '<p class="text-danger">Неправильно. Попробуйте еще раз.</p>';
-      }
-    }
+        function nextQuestion() {
+            const answerElement = document.getElementById("answer");
+            answerElement.innerHTML = "";
+            document.getElementById("nextButton").disabled = true;
+            currentQuestion++;
+            if (currentQuestion < vocabulary.length) {
+                displayQuestion();
+            } else {
+                document.getElementById("question").innerHTML = `<h3 class="card-title">Игра окончена. Поздравляем!</h3>`;
+                document.getElementById("options").innerHTML = "";
+                document.getElementById("nextButton").style.display = "none";
+            }
+        }
 
-    function nextWord() {
-      document.getElementById('guess-input').value = '';
-      document.getElementById('result').innerHTML = '';
-      displayWord();
-    }
-
-    document.getElementById('check-btn').addEventListener('click', checkGuess);
-    document.getElementById('next-btn').addEventListener('click', nextWord);
-
-    // Инициализация первого слова
-    displayWord();
-  </script>
+        displayQuestion();
+    </script>
 </body>
 </html>
