@@ -4,34 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nes.css/css/nes.min.css">
+<style>
+    body {
+        background-color: #dbe4ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        max-width: 500px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 5%;
+        text-align: center; /* выравнивание по центру */
+    }
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        display: flex; /* использование flexbox */
+        flex-direction: column; /* вертикальное выравнивание */
+        align-items: center; /* выравнивание по центру */
+    }
+    .question {
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 24px; /* увеличиваем размер шрифта */
+        background-color: #f0f8ff; /* цвет фона для вопроса */
+        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+    }
+    .nes-text.is-primary {
+        font-size: 24px;
+        color: #005a99; /* цвет текста */
+        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+    }
+    .nes-btn {
+        font-size: 18px;
+        padding: 15px 25px;
+        border-radius: 15px;
+        margin-top: 20px;
+        width: 200px;
+        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+    }
+    .nes-btn.is-warning {
+        font-size: 20px; /* увеличиваем размер шрифта */
+    }
+    .nes-btn:last-child {
+        margin-right: 0;
+    }
+    #answer {
+        margin-top: 20px;
+    }
+    .nes-text.is-success, .nes-text.is-error {
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+    }
+    .nes-text.is-success {
+        color: #00cc00; /* изменяем цвет на зеленый */
+        font-weight: bold; /* делаем текст жирным */
+        font-size: 20px; /* увеличиваем размер шрифта */
+        background-color: #dff0d8; /* цвет фона для правильного ответа */
+    }
+    .nes-text.is-error {
+        color: #cc0000; /* изменяем цвет на красный */
+        font-weight: bold; /* делаем текст жирным */
+        font-size: 20px; /* увеличиваем размер шрифта */
+        background-color: #f2dede; /* цвет фона для неправильного ответа */
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
     <div class="container mt-5">
         <div class="card">
-            <div class="card-body">
-                <h1 class="card-title mb-4">Угадай слово</h1>
-                <div id="question" class="mb-3"></div>
-                <div id="options"></div>
-                <div id="answer" class="mt-3"></div>
-                <button id="nextButton" class="btn btn-primary mt-3" onclick="nextQuestion()">Следующий вопрос</button>
-            </div>
+            <h1 class="nes-text is-error" style="margin-bottom: 20px;">English Vocabulary Quiz</h1>
+            <div id="question" style="margin-bottom: 20px;"></div>
+            <div id="options" style="margin-bottom: 20px;"></div>
+            <div id="answer"></div>
+            <button id="nextButton" class="nes-btn is-primary" onclick="nextQuestion()">Next</button>
         </div>
     </div>
 
     <script>
         const vocabulary = [
-            { question: "Вопрос: идти", options: ["go", "come", "run", "walk"], correctAnswer: "go" },
-            { question: "Вопрос: приходить", options: ["go", "come", "run", "walk"], correctAnswer: "come" },
-            { question: "Вопрос: поворачивать", options: ["turn", "move", "stand", "stop"], correctAnswer: "turn" },
-            { question: "Вопрос: бежать", options: ["go", "come", "run", "walk"], correctAnswer: "run" },
-            { question: "Вопрос: двигать (-ся)", options: ["turn", "move", "stand", "stop"], correctAnswer: "move" },
-            { question: "Вопрос: приносить", options: ["bring", "sit", "stand", "follow"], correctAnswer: "bring" },
-            { question: "Вопрос: сидеть", options: ["bring", "sit", "stand", "follow"], correctAnswer: "sit" },
-            { question: "Вопрос: стоять", options: ["bring", "sit", "stand", "follow"], correctAnswer: "stand" },
-            { question: "Вопрос: следовать", options: ["bring", "sit", "stand", "follow"], correctAnswer: "follow" },
-            { question: "Вопрос: остановиться (-ся)", options: ["move", "stop", "walk", "run"], correctAnswer: "stop" },
-            { question: "Вопрос: ходить (гулять)", options: ["go", "walk", "run", "come"], correctAnswer: "walk" }
+            { question: "Вопрос: идти", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "go (went, gone)" },
+            { question: "Вопрос: приходить", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "come (came, come)" },
+            { question: "Вопрос: поворачивать", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "turn (төрн)" },
+            { question: "Вопрос: бежать", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "run (ran, run)" },
+            { question: "Вопрос: двигать (-ся)", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "move (мув)" },
+            { question: "Вопрос: приносить", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "bring (brought, brought)" },
+            { question: "Вопрос: сидеть", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "sit (sat, sat)" },
+            { question: "Вопрос: стоять", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "stand (стәнд)" },
+            { question: "Вопрос: следовать", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "follow (фолоу)" },
+            { question: "Вопрос: остановиться (-ся)", options: ["turn (төрн)", "move (мув)", "stop (стoп)", "walk (уок)"], correctAnswer: "stop (стoп)" },
+            { question: "Вопрос: ходить (гулять)", options: ["go (went, gone)", "walk (уок)", "run (ran, run)", "come (came, come)"], correctAnswer: "walk (уок)" }
         ];
 
         let currentQuestion = 0;
@@ -39,12 +123,12 @@
         function displayQuestion() {
             const questionElement = document.getElementById("question");
             const optionsElement = document.getElementById("options");
-            questionElement.innerHTML = `<h3 class="card-title">${vocabulary[currentQuestion].question}</h3>`;
+            questionElement.innerHTML = `<h3 class="nes-text is-primary">${vocabulary[currentQuestion].question}</h3>`;
             optionsElement.innerHTML = "";
             vocabulary[currentQuestion].options.forEach(option => {
                 const optionButton = document.createElement("button");
-                optionButton.className = "btn btn-outline-primary me-2 mb-2";
-                optionButton.textContent = option;
+                optionButton.className = "nes-btn is-warning me-2 mb-2";
+                optionButton.innerHTML = option;
                 optionButton.addEventListener("click", () => checkAnswer(option));
                 optionsElement.appendChild(optionButton);
             });
@@ -53,9 +137,9 @@
         function checkAnswer(selectedOption) {
             const answerElement = document.getElementById("answer");
             if (selectedOption === vocabulary[currentQuestion].correctAnswer) {
-                answerElement.innerHTML = `<div class="alert alert-success" role="alert">Правильно!</div>`;
+                answerElement.innerHTML = `<p class="nes-text is-success">Правильно!</p>`;
             } else {
-                answerElement.innerHTML = `<div class="alert alert-danger" role="alert">Неправильно. Правильный ответ: ${vocabulary[currentQuestion].correctAnswer}</div>`;
+                answerElement.innerHTML = `<p class="nes-text is-error">Неправильно</p>`;
             }
             document.getElementById("nextButton").disabled = false;
         }
@@ -68,7 +152,7 @@
             if (currentQuestion < vocabulary.length) {
                 displayQuestion();
             } else {
-                document.getElementById("question").innerHTML = `<h3 class="card-title">Игра окончена. Поздравляем!</h3>`;
+                document.getElementById("question").innerHTML = `<h3 class="nes-text is-primary">Игра окончена. Поздравляем!</h3>`;
                 document.getElementById("options").innerHTML = "";
                 document.getElementById("nextButton").style.display = "none";
             }
