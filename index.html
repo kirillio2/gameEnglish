@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nes.css/css/nes.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+
+    @media screen and (max-width: 600px) {
+        .nes-btn {
+            font-size: 14px;
+        }
+        .nes-text.is-primary {
+            font-size: 18px;
+        }
+        .question {
+            font-size: 18px;
+        }
+    }
+
+
         body {
             background-color: #dbe4ff;
             display: flex;
@@ -34,14 +48,13 @@
             align-items: center; /* выравнивание по центру */
         }
         .question {
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        font-size: 16px; /* увеличиваем размер шрифта */
-        background-color: #f0f8ff; /* цвет фона для вопроса */
-        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-        display: inline-block; /* чтобы рамка обтекала текст */
-    }
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px; /* увеличиваем размер шрифта */
+            background-color: #f0f8ff; /* цвет фона для вопроса */
+            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+        }
         .nes-text.is-primary {
             font-size: 24px;
             color: #005a99; /* цвет текста */
@@ -87,7 +100,6 @@
 <body>
     <div class="container mt-5">
         <div class="card">
-            <h1 class="nes-text is-error" style="margin-bottom: 20px;">English Vocabulary Quiz</h1>
             <div id="question" class="question" style="margin-bottom: 20px;"></div>
             <div id="options" style="margin-bottom: 20px;"></div>
             <div id="answer"></div>
