@@ -2,103 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nes.css/css/nes.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<style>
-    body {
-        background-color: #dbe4ff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .container {
-        max-width: 500px;
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-        margin-top: 5%;
-        text-align: center; /* выравнивание по центру */
-    }
-    .card {
-        background-color: #ffffff;
-        border-radius: 15px;
-        padding: 30px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        display: flex; /* использование flexbox */
-        flex-direction: column; /* вертикальное выравнивание */
-        align-items: center; /* выравнивание по центру */
-    }
-    .question {
+    <style>
+        body {
+            background-color: #dbe4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 5%;
+            text-align: center; /* выравнивание по центру */
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex; /* использование flexbox */
+            flex-direction: column; /* вертикальное выравнивание */
+            align-items: center; /* выравнивание по центру */
+        }
+        .question {
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 20px;
-        font-size: 12px; /* увеличиваем размер шрифта */
+        font-size: 16px; /* увеличиваем размер шрифта */
         background-color: #f0f8ff; /* цвет фона для вопроса */
         font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+        display: inline-block; /* чтобы рамка обтекала текст */
     }
-    .nes-text.is-primary {
-        font-size: 24px;
-        color: #005a99; /* цвет текста */
-        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-    }
-    .nes-btn {
-        font-size: 18px;
-        padding: 15px 25px;
-        border-radius: 15px;
-        margin-top: 20px;
-        width: 200px;
-        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-    }
-    .nes-btn.is-warning {
-        font-size: 16px; /* увеличиваем размер шрифта */
-    }
-    .nes-btn:last-child {
-        margin-right: 0;
-    }
-    #answer {
-        margin-top: 20px;
-    }
-    .nes-text.is-success, .nes-text.is-error {
-        padding: 10px;
-
-        border-radius: 8px;
-        margin-top: 20px;
-        font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-    }
-    .nes-text.is-success {
-        color: #00cc00; /* изменяем цвет на зеленый */
-        font-weight: bold; /* делаем текст жирным */
-        font-size: 20px; /* увеличиваем размер шрифта */
-        background-color: #dff0d8; /* цвет фона для правильного ответа */
-    }
-    .nes-text.is-error {
-        color: #cc0000; /* изменяем цвет на красный */
-        font-weight: bold; /* делаем текст жирным */
-        font-size: 20px; /* увеличиваем размер шрифта */
-        background-color: #f2dede; /* цвет фона для неправильного ответа */
-    }
-</style>
-
-
-
-
-
-
-
-
-
-
+        .nes-text.is-primary {
+            font-size: 24px;
+            color: #005a99; /* цвет текста */
+            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+        }
+        .nes-btn {
+            font-size: 18px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            width: 200px;
+            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+        }
+        .nes-btn.is-warning {
+            font-size: 16px; /* увеличиваем размер шрифта */
+        }
+        .nes-btn:last-child {
+            margin-right: 0;
+        }
+        #answer {
+            margin-top: 20px;
+        }
+        .nes-text.is-success, .nes-text.is-error {
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
+        }
+        .nes-text.is-success {
+            color: #00cc00; /* изменяем цвет на зеленый */
+            font-weight: bold; /* делаем текст жирным */
+            font-size: 20px; /* увеличиваем размер шрифта */
+            background-color: #dff0d8; /* цвет фона для правильного ответа */
+        }
+        .nes-text.is-error {
+            color: #cc0000; /* изменяем цвет на красный */
+            font-weight: bold; /* делаем текст жирным */
+            font-size: 20px; /* увеличиваем размер шрифта */
+            background-color: #f2dede; /* цвет фона для неправильного ответа */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="card">
             <h1 class="nes-text is-error" style="margin-bottom: 20px;">English Vocabulary Quiz</h1>
-            <div id="question" style="margin-bottom: 20px;"></div>
+            <div id="question" class="question" style="margin-bottom: 20px;"></div>
             <div id="options" style="margin-bottom: 20px;"></div>
             <div id="answer"></div>
             <button id="nextButton" class="nes-btn is-primary" onclick="nextQuestion()">Next</button>
