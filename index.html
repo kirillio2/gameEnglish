@@ -6,96 +6,87 @@
     <title>Quiz Game</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nes.css/css/nes.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-
-    @media screen and (max-width: 600px) {
-        .nes-btn {
-            font-size: 14px;
-        }
-        .nes-text.is-primary {
-            font-size: 18px;
-        }
-        .question {
-            font-size: 18px;
-        }
+  <style>
+    body {
+        background-color: #dbe4ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Press Start 2P', cursive; /* устанавливаем шрифт */
     }
 
+    .container {
+        max-width: 100%;
+        width: 90%; /* изменяем ширину контейнера для мобильных устройств */
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 5%;
+        text-align: center; /* выравнивание по центру */
+    }
 
-        body {
-            background-color: #dbe4ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .question {
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 14px; /* уменьшаем размер шрифта */
+        background-color: #f0f8ff; /* цвет фона для вопроса */
+    }
+
+    .nes-text.is-primary {
+        font-size: 20px; /* уменьшаем размер шрифта */
+        color: #005a99; /* цвет текста */
+    }
+
+    .nes-btn {
+        font-size: 16px; /* уменьшаем размер шрифта */
+        padding: 10px 20px; /* устанавливаем отступы кнопки */
+        border-radius: 15px;
+        margin-top: 10px;
+        width: 100%; /* делаем кнопки одинаковой ширины */
+    }
+
+    #answer {
+        margin-top: 10px;
+    }
+
+    .nes-text.is-success, .nes-text.is-error {
+        padding: 5px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+
+    .nes-text.is-success {
+        color: #00cc00; /* изменяем цвет на зеленый */
+        font-weight: bold; /* делаем текст жирным */
+        font-size: 16px; /* уменьшаем размер шрифта */
+        background-color: #dff0d8; /* цвет фона для правильного ответа */
+    }
+
+    .nes-text.is-error {
+        color: #cc0000; /* изменяем цвет на красный */
+        font-weight: bold; /* делаем текст жирным */
+        font-size: 16px; /* уменьшаем размер шрифта */
+        background-color: #f2dede; /* цвет фона для неправильного ответа */
+    }
+
+    @media screen and (max-width: 600px) {
         .container {
-            max-width: 500px;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            margin-top: 5%;
-            text-align: center; /* выравнивание по центру */
+            width: 100%; /* изменяем ширину контейнера для мобильных устройств */
         }
-        .card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: flex; /* использование flexbox */
-            flex-direction: column; /* вертикальное выравнивание */
-            align-items: center; /* выравнивание по центру */
-        }
-        .question {
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 16px; /* увеличиваем размер шрифта */
-            background-color: #f0f8ff; /* цвет фона для вопроса */
-            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-        }
-        .nes-text.is-primary {
-            font-size: 24px;
-            color: #005a99; /* цвет текста */
-            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-        }
-        .nes-btn {
-            font-size: 18px;
-            padding: 15px 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-            width: 200px;
-            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-        }
-        .nes-btn.is-warning {
-            font-size: 16px; /* увеличиваем размер шрифта */
-        }
-        .nes-btn:last-child {
-            margin-right: 0;
-        }
-        #answer {
-            margin-top: 20px;
-        }
-        .nes-text.is-success, .nes-text.is-error {
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-family: 'Press Start 2P', cursive; /* задаем стиль шрифта из библиотеки NES.css */
-        }
-        .nes-text.is-success {
-            color: #00cc00; /* изменяем цвет на зеленый */
-            font-weight: bold; /* делаем текст жирным */
-            font-size: 20px; /* увеличиваем размер шрифта */
-            background-color: #dff0d8; /* цвет фона для правильного ответа */
-        }
-        .nes-text.is-error {
-            color: #cc0000; /* изменяем цвет на красный */
-            font-weight: bold; /* делаем текст жирным */
-            font-size: 20px; /* увеличиваем размер шрифта */
-            background-color: #f2dede; /* цвет фона для неправильного ответа */
-        }
-    </style>
+    }
+</style>
+
+
 </head>
 <body>
     <div class="container mt-5">
@@ -109,17 +100,17 @@
 
     <script>
         const vocabulary = [
-            { question: "Вопрос: идти", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "go (went, gone)" },
-            { question: "Вопрос: приходить", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "come (came, come)" },
-            { question: "Вопрос: поворачивать", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "turn (төрн)" },
-            { question: "Вопрос: бежать", options: ["go (went, gone)", "come (came, come)", "run (ran, run)", "walk (уок)"], correctAnswer: "run (ran, run)" },
-            { question: "Вопрос: двигать (-ся)", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "move (мув)" },
-            { question: "Вопрос: приносить", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "bring (brought, brought)" },
-            { question: "Вопрос: сидеть", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "sit (sat, sat)" },
-            { question: "Вопрос: стоять", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "stand (стәнд)" },
-            { question: "Вопрос: следовать", options: ["bring (brought, brought)", "sit (sat, sat)", "stand (стәнд)", "follow (фолоу)"], correctAnswer: "follow (фолоу)" },
-            { question: "Вопрос: остановиться (-ся)", options: ["turn (төрн)", "move (мув)", "stop (стoп)", "walk (уок)"], correctAnswer: "stop (стoп)" },
-            { question: "Вопрос: ходить (гулять)", options: ["go (went, gone)", "walk (уок)", "run (ran, run)", "come (came, come)"], correctAnswer: "walk (уок)" }
+             { question: "Вопрос: идти", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "go (гөу, уент, гон)" },
+    { question: "Вопрос: приходить", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "come (кам, кейм, кам)" },
+    { question: "Вопрос: поворачивать", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "turn (төрн)" },
+    { question: "Вопрос: бежать", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "run (ран, ран)" },
+    { question: "Вопрос: двигать (-ся)", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "move (мув)" },
+    { question: "Вопрос: приносить", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "bring (бринг, брот, брот)" },
+    { question: "Вопрос: сидеть", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "sit (сит, сат, сат)" },
+    { question: "Вопрос: стоять", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "stand (стэнд)" },
+    { question: "Вопрос: следовать", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "follow (фолоу)" },
+    { question: "Вопрос: остановиться (-ся)", options: ["turn (төрн)", "move (мув)", "stop (стоуп, стоп)", "walk (уок)"], correctAnswer: "stop (стоуп, стоп)" },
+    { question: "Вопрос: ходить (гулять)", options: ["go (гөу, уент, гон)", "walk (уок)", "run (ран, ран)", "come (кам, кейм, кам)"], correctAnswer: "walk (уок)" }
         ];
 
         let currentQuestion = 0;
