@@ -6,87 +6,85 @@
     <title>Quiz Game</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nes.css/css/nes.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    body {
-        background-color: #dbe4ff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        font-family: 'Press Start 2P', cursive; /* устанавливаем шрифт */
-    }
-
-    .container {
-        max-width: 100%;
-        width: 90%; /* изменяем ширину контейнера для мобильных устройств */
-        padding: 20px;
-        box-sizing: border-box;
-        margin-top: 5%;
-        text-align: center; /* выравнивание по центру */
-    }
-
-    .card {
-        background-color: #ffffff;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-
-    .question {
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        font-size: 14px; /* уменьшаем размер шрифта */
-        background-color: #f0f8ff; /* цвет фона для вопроса */
-    }
-
-    .nes-text.is-primary {
-        font-size: 20px; /* уменьшаем размер шрифта */
-        color: #005a99; /* цвет текста */
-    }
-
-    .nes-btn {
-        font-size: 16px; /* уменьшаем размер шрифта */
-        padding: 10px 20px; /* устанавливаем отступы кнопки */
-        border-radius: 15px;
-        margin-top: 10px;
-        width: 100%; /* делаем кнопки одинаковой ширины */
-    }
-
-    #answer {
-        margin-top: 10px;
-    }
-
-    .nes-text.is-success, .nes-text.is-error {
-        padding: 5px;
-        border-radius: 8px;
-        margin-top: 10px;
-    }
-
-    .nes-text.is-success {
-        color: #00cc00; /* изменяем цвет на зеленый */
-        font-weight: bold; /* делаем текст жирным */
-        font-size: 16px; /* уменьшаем размер шрифта */
-        background-color: #dff0d8; /* цвет фона для правильного ответа */
-    }
-
-    .nes-text.is-error {
-        color: #cc0000; /* изменяем цвет на красный */
-        font-weight: bold; /* делаем текст жирным */
-        font-size: 16px; /* уменьшаем размер шрифта */
-        background-color: #f2dede; /* цвет фона для неправильного ответа */
-    }
-
-    @media screen and (max-width: 600px) {
-        .container {
-            width: 100%; /* изменяем ширину контейнера для мобильных устройств */
+    <style>
+        body {
+            background-color: #dbe4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive; /* устанавливаем шрифт */
         }
-    }
-</style>
 
+        .container {
+            max-width: 100%;
+            width: 90%; /* изменяем ширину контейнера для мобильных устройств */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 5%;
+            text-align: center; /* выравнивание по центру */
+        }
 
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px; /* уменьшаем размер шрифта */
+            background-color: #f0f8ff; /* цвет фона для вопроса */
+        }
+
+        .nes-text.is-primary {
+            font-size: 20px; /* уменьшаем размер шрифта */
+            color: #005a99; /* цвет текста */
+        }
+
+        .nes-btn {
+            font-size: 16px; /* уменьшаем размер шрифта */
+            padding: 10px 20px; /* устанавливаем отступы кнопки */
+            border-radius: 15px;
+            margin-top: 10px;
+            width: 100%; /* делаем кнопки одинаковой ширины */
+        }
+
+        #answer {
+            margin-top: 10px;
+        }
+
+        .nes-text.is-success, .nes-text.is-error {
+            padding: 5px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .nes-text.is-success {
+            color: #00cc00; /* изменяем цвет на зеленый */
+            font-weight: bold; /* делаем текст жирным */
+            font-size: 16px; /* уменьшаем размер шрифта */
+            background-color: #dff0d8; /* цвет фона для правильного ответа */
+        }
+
+        .nes-text.is-error {
+            color: #cc0000; /* изменяем цвет на красный */
+            font-weight: bold; /* делаем текст жирным */
+            font-size: 16px; /* уменьшаем размер шрифта */
+            background-color: #f2dede; /* цвет фона для неправильного ответа */
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%; /* изменяем ширину контейнера для мобильных устройств */
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -99,61 +97,348 @@
     </div>
 
     <script>
-        const vocabulary = [
-             { question: "Вопрос: идти", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "go (гөу, уент, гон)" },
-    { question: "Вопрос: приходить", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "come (кам, кейм, кам)" },
-    { question: "Вопрос: поворачивать", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "turn (төрн)" },
-    { question: "Вопрос: бежать", options: ["go (гөу, уент, гон)", "come (кам, кейм, кам)", "run (ран, ран)", "walk (уок)"], correctAnswer: "run (ран, ран)" },
-    { question: "Вопрос: двигать (-ся)", options: ["turn (төрн)", "move (мув)", "stand (стәнд)", "stop (стoп)"], correctAnswer: "move (мув)" },
-    { question: "Вопрос: приносить", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "bring (бринг, брот, брот)" },
-    { question: "Вопрос: сидеть", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "sit (сит, сат, сат)" },
-    { question: "Вопрос: стоять", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "stand (стэнд)" },
-    { question: "Вопрос: следовать", options: ["bring (бринг, брот, брот)", "sit (сит, сат, сат)", "stand (стэнд)", "follow (фолоу)"], correctAnswer: "follow (фолоу)" },
-    { question: "Вопрос: остановиться (-ся)", options: ["turn (төрн)", "move (мув)", "stop (стоуп, стоп)", "walk (уок)"], correctAnswer: "stop (стоуп, стоп)" },
-    { question: "Вопрос: ходить (гулять)", options: ["go (гөу, уент, гон)", "walk (уок)", "run (ран, ран)", "come (кам, кейм, кам)"], correctAnswer: "walk (уок)" }
-        ];
+const vocabulary = [
+    { id: 1, question: "идти", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 1 },
+    { id: 2, question: "приходить", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 2 },
+    { id: 3, question: "поворачивать", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 3 },
+    { id: 4, question: "бежать", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 4 },
+    { id: 5, question: "двигать (-ся)", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 1 },
+    { id: 6, question: "приносить", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 2 },
+    { id: 7, question: "сидеть", options: [{ id: 1, text: "go " }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 3 },
+    { id: 8, question: "стоять", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 4 },
+    { id: 9, question: "следовать", options: [{ id: 1, text: "go " }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 1 },
+    { id: 10, question: "остановиться (-ся)", options: [{ id: 1, text: "go" }, { id: 2, text: "come" }, { id: 3, text: "turn -(төрн)" }, { id: 4, text: "run (ran, run) -(ран рән ран)" }], correctAnswerId: 2 },
+    { id: 11, question: "стоять", options: [{ id: 1, text: "stand" }, { id: 2, text: "stay" }, { id: 3, text: "stop" }, { id: 4, text: "walk" }], correctAnswerId: 1 },
+    { id: 12, question: "следовать", options: [{ id: 1, text: "follow" }, { id: 2, text: "push" }, { id: 3, text: "drag" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 13, question: "останавливать", options: [{ id: 1, text: "stop" }, { id: 2, text: "drive" }, { id: 3, text: "walk" }, { id: 4, text: "fly" }], correctAnswerId: 1 },
+    { id: 14, question: "ходить", options: [{ id: 1, text: "walk" }, { id: 2, text: "run" }, { id: 3, text: "fly" }, { id: 4, text: "jump" }], correctAnswerId: 1 },
+    { id: 15, question: "появляться", options: [{ id: 1, text: "appear" }, { id: 2, text: "disappear" }, { id: 3, text: "shake" }, { id: 4, text: "approach" }], correctAnswerId: 1 },
+    { id: 16, question: "исчезать", options: [{ id: 1, text: "disappear" }, { id: 2, text: "appear" }, { id: 3, text: "stop" }, { id: 4, text: "fall" }], correctAnswerId: 1 },
+    { id: 17, question: "оставаться", options: [{ id: 1, text: "remain" }, { id: 2, text: "leave" }, { id: 3, text: "drive" }, { id: 4, text: "wear" }], correctAnswerId: 1 },
+    { id: 18, question: "уходить", options: [{ id: 1, text: "leave" }, { id: 2, text: "arrive" }, { id: 3, text: "wear" }, { id: 4, text: "stand" }], correctAnswerId: 1 },
+    { id: 19, question: "поднимать", options: [{ id: 1, text: "raise" }, { id: 2, text: "lift" }, { id: 3, text: "jump" }, { id: 4, text: "shake" }], correctAnswerId: 1 },
+    { id: 20, question: "нести", options: [{ id: 1, text: "carry" }, { id: 2, text: "drive" }, { id: 3, text: "roll" }, { id: 4, text: "drag" }], correctAnswerId: 1 },
+    { id: 21, question: "вести машину", options: [{ id: 1, text: "drive" }, { id: 2, text: "throw" }, { id: 3, text: "fly" }, { id: 4, text: "climb" }], correctAnswerId: 1 },
+    { id: 22, question: "бросать", options: [{ id: 1, text: "throw" }, { id: 2, text: "push" }, { id: 3, text: "drive" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 23, question: "толкать", options: [{ id: 1, text: "push" }, { id: 2, text: "throw" }, { id: 3, text: "drag" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 24, question: "класть", options: [{ id: 1, text: "lay" }, { id: 2, text: "lie" }, { id: 3, text: "roll" }, { id: 4, text: "step" }], correctAnswerId: 1 },
+    { id: 25, question: "лежать", options: [{ id: 1, text: "lie" }, { id: 2, text: "lay" }, { id: 3, text: "roll" }, { id: 4, text: "jump" }], correctAnswerId: 1 },
+    { id: 26, question: "прибывать", options: [{ id: 1, text: "arrive" }, { id: 2, text: "drive" }, { id: 3, text: "fall" }, { id: 4, text: "wear" }], correctAnswerId: 1 },
+    { id: 27, question: "трясти", options: [{ id: 1, text: "shake" }, { id: 2, text: "push" }, { id: 3, text: "lie" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 28, question: "летать", options: [{ id: 1, text: "fly" }, { id: 2, text: "walk" }, { id: 3, text: "run" }, { id: 4, text: "drive" }], correctAnswerId: 1 },
+    { id: 29, question: "оставаться", options: [{ id: 1, text: "stay" }, { id: 2, text: "stop" }, { id: 3, text: "walk" }, { id: 4, text: "lie" }], correctAnswerId: 1 },
+    { id: 30, question: "падать", options: [{ id: 1, text: "fall" }, { id: 2, text: "step" }, { id: 3, text: "wear" }, { id: 4, text: "run" }], correctAnswerId: 1 },
+    { id: 31, question: "носить", options: [{ id: 1, text: "wear" }, { id: 2, text: "throw" }, { id: 3, text: "leave" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 32, question: "шагнуть", options: [{ id: 1, text: "step" }, { id: 2, text: "walk" }, { id: 3, text: "run" }, { id: 4, text: "stop" }], correctAnswerId: 1 },
+    { id: 33, question: "катиться", options: [{ id: 1, text: "roll" }, { id: 2, text: "throw" }, { id: 3, text: "push" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 34, question: "ехать", options: [{ id: 1, text: "ride" }, { id: 2, text: "walk" }, { id: 3, text: "stop" }, { id: 4, text: "stand" }], correctAnswerId: 1 },
+    { id: 35, question: "поднимать", options: [{ id: 1, text: "lift" }, { id: 2, text: "raise" }, { id: 3, text: "throw" }, { id: 4, text: "drag" }], correctAnswerId: 1 },
+    { id: 36, question: "исчезать", options: [{ id: 1, text: "disappear" }, { id: 2, text: "appear" }, { id: 3, text: "shake" }, { id: 4, text: "cross" }], correctAnswerId: 1 },
+    { id: 37, question: "оставаться", options: [{ id: 1, text: "remain" }, { id: 2, text: "leave" }, { id: 3, text: "stay" }, { id: 4, text: "drive" }], correctAnswerId: 1 },
+    { id: 38, question: "уходить", options: [{ id: 1, text: "leave" }, { id: 2, text: "carry" }, { id: 3, text: "drive" }, { id: 4, text: "roll" }], correctAnswerId: 1 },
+    { id: 39, question: "поднимать", options: [{ id: 1, text: "raise" }, { id: 2, text: "lift" }, { id: 3, text: "jump" }, { id: 4, text: "shake" }], correctAnswerId: 2 },
+    { id: 40, question: "нести", options: [{ id: 1, text: "carry" }, { id: 2, text: "drive" }, { id: 3, text: "push" }, { id: 4, text: "throw" }], correctAnswerId: 1 },
+    { id: 41, question: "вести машину", options: [{ id: 1, text: "drive" }, { id: 2, text: "fly" }, { id: 3, text: "ride" }, { id: 4, text: "push" }], correctAnswerId: 1 },
+    { id: 42, question: "бросать", options: [{ id: 1, text: "throw" }, { id: 2, text: "push" }, { id: 3, text: "drag" }, { id: 4, text: "lift" }], correctAnswerId: 1 },
+    { id: 43, question: "толкать", options: [{ id: 1, text: "push" }, { id: 2, text: "throw" }, { id: 3, text: "drag" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 44, question: "класть", options: [{ id: 1, text: "lay" }, { id: 2, text: "lie" }, { id: 3, text: "roll" }, { id: 4, text: "step" }], correctAnswerId: 1 },
+    { id: 45, question: "лежать", options: [{ id: 1, text: "lie" }, { id: 2, text: "lay" }, { id: 3, text: "run" }, { id: 4, text: "jump" }], correctAnswerId: 1 },
+    { id: 46, question: "прибывать", options: [{ id: 1, text: "arrive" }, { id: 2, text: "drive" }, { id: 3, text: "fall" }, { id: 4, text: "wear" }], correctAnswerId: 1 },
+    { id: 47, question: "трясти", options: [{ id: 1, text: "shake" }, { id: 2, text: "push" }, { id: 3, text: "lie" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 48, question: "летать", options: [{ id: 1, text: "fly" }, { id: 2, text: "walk" }, { id: 3, text: "run" }, { id: 4, text: "drive" }], correctAnswerId: 1 },
+    { id: 49, question: "оставаться", options: [{ id: 1, text: "stay" }, { id: 2, text: "stop" }, { id: 3, text: "walk" }, { id: 4, text: "lie" }], correctAnswerId: 1 },
+    { id: 50, question: "падать", options: [{ id: 1, text: "fall" }, { id: 2, text: "step" }, { id: 3, text: "wear" }, { id: 4, text: "run" }], correctAnswerId: 1 },
+    { id: 51, question: "носить", options: [{ id: 1, text: "wear" }, { id: 2, text: "throw" }, { id: 3, text: "leave" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 52, question: "шагнуть", options: [{ id: 1, text: "step" }, { id: 2, text: "walk" }, { id: 3, text: "run" }, { id: 4, text: "stop" }], correctAnswerId: 1 },
+    { id: 53, question: "катиться", options: [{ id: 1, text: "roll" }, { id: 2, text: "throw" }, { id: 3, text: "push" }, { id: 4, text: "carry" }], correctAnswerId: 1 },
+    { id: 54, question: "ехать", options: [{ id: 1, text: "ride" }, { id: 2, text: "walk" }, { id: 3, text: "stop" }, { id: 4, text: "stand" }], correctAnswerId: 1 },
+    { id: 55, question: "поднимать", options: [{ id: 1, text: "lift" }, { id: 2, text: "raise" }, { id: 3, text: "throw" }, { id: 4, text: "drag" }], correctAnswerId: 1 },
+    { id: 56, question: "нести", options: [{ id: 1, text: "bear" }, { id: 2, text: "shift" }, { id: 3, text: "slip" }, { id: 4, text: "rush" }], correctAnswerId: 1 },
+    { id: 57, question: "сдвигать", options: [{ id: 1, text: "shift" }, { id: 2, text: "slide" }, { id: 3, text: "swing" }, { id: 4, text: "advance" }], correctAnswerId: 1 },
+    { id: 58, question: "поскальзываться", options: [{ id: 1, text: "slip" }, { id: 2, text: "toss" }, { id: 3, text: "accompany" }, { id: 4, text: "drag" }], correctAnswerId: 1 },
+    { id: 59, question: "торопиться (стремительно мчаться)", options: [{ id: 1, text: "rush" }, { id: 2, text: "land" }, { id: 3, text: "escape" }, { id: 4, text: "slide" }], correctAnswerId: 1 },
+    { id: 60, question: "приземляться", options: [{ id: 1, text: "land" }, { id: 2, text: "flee" }, { id: 3, text: "drag" }, { id: 4, text: "sink" }], correctAnswerId: 1 },
+    { id: 61, question: "сбегать", options: [{ id: 1, text: "escape" }, { id: 2, text: "drag" }, { id: 3, text: "swing" }, { id: 4, text: "advance" }], correctAnswerId: 1 },
+    { id: 62, question: "тащить", options: [{ id: 1, text: "drag" }, { id: 2, text: "slide" }, { id: 3, text: "toss" }, { id: 4, text: "accompany" }], correctAnswerId: 1 },
+    { id: 63, question: "скользить", options: [{ id: 1, text: "slide" }, { id: 2, text: "swing" }, { id: 3, text: "advance" }, { id: 4, text: "swim" }], correctAnswerId: 1 },
+    { id: 64, question: "бросать (метать)", options: [{ id: 1, text: "toss" }, { id: 2, text: "accompany" }, { id: 3, text: "swing" }, { id: 4, text: "advance" }], correctAnswerId: 1 },
+    { id: 65, question: "сопровождать", options: [{ id: 1, text: "accompany" }, { id: 2, text: "advance" }, { id: 3, text: "swim" }, { id: 4, text: "flee" }], correctAnswerId: 1 },
+    { id: 66, question: "раскачивать", options: [{ id: 1, text: "swing" }, { id: 2, text: "advance" }, { id: 3, text: "swim" }, { id: 4, text: "flee" }], correctAnswerId: 1 },
+    { id: 67, question: "продвигаться", options: [{ id: 1, text: "advance" }, { id: 2, text: "swim" }, { id: 3, text: "flee" }, { id: 4, text: "sink" }], correctAnswerId: 1 },
+    { id: 68, question: "плыть", options: [{ id: 1, text: "swim" }, { id: 2, text: "flee" }, { id: 3, text: "sink" }, { id: 4, text: "bear" }], correctAnswerId: 1 },
+    { id: 69, question: "убегать, спасаться бегством", options: [{ id: 1, text: "flee" }, { id: 2, text: "sink" }, { id: 3, text: "bear" }, { id: 4, text: "shift" }], correctAnswerId: 1 },
+    { id: 70, question: "тонуть", options: [{ id: 1, text: "sink" }, { id: 2, text: "bear" }, { id: 3, text: "shift" }, { id: 4, text: "slip" }], correctAnswerId: 1 },
+    { id: 71, question: "давать", options: [{ id: 1, text: "give (gave, given) -(гэв гейв гивн)" }, { id: 2, text: "return" }, { id: 3, text: "join" }, { id: 4, text: "involve" }], correctAnswerId: 1 },
+    { id: 72, question: "возвращать", options: [{ id: 1, text: "return" }, { id: 2, text: "join" }, { id: 3, text: "involve" }, { id: 4, text: "release" }], correctAnswerId: 1 },
+    { id: 73, question: "присоединять", options: [{ id: 1, text: "join" }, { id: 2, text: "involve" }, { id: 3, text: "release" }, { id: 4, text: "own" }], correctAnswerId: 1 },
+    { id: 74, question: "вовлекать", options: [{ id: 1, text: "involve" }, { id: 2, text: "release" }, { id: 3, text: "own" }, { id: 4, text: "gain" }], correctAnswerId: 1 },
+    { id: 75, question: "выпускать (отпускать)", options: [{ id: 1, text: "release" }, { id: 2, text: "own" }, { id: 3, text: "gain" }, { id: 4, text: "emerge" }], correctAnswerId: 1 },
+    { id: 76, question: "владеть", options: [{ id: 1, text: "own" }, { id: 2, text: "gain" }, { id: 3, text: "emerge" }, { id: 4, text: "expand" }], correctAnswerId: 1 },
+    { id: 77, question: "получать", options: [{ id: 1, text: "gain" }, { id: 2, text: "emerge" }, { id: 3, text: "expand" }, { id: 4, text: "disappear" }], correctAnswerId: 1 },
+    { id: 78, question: "появляться", options: [{ id: 1, text: "emerge" }, { id: 2, text: "expand" }, { id: 3, text: "disappear" }, { id: 4, text: "obtain" }], correctAnswerId: 1 },
+    { id: 79, question: "расширять (-ся)", options: [{ id: 1, text: "expand" }, { id: 2, text: "disappear" }, { id: 3, text: "obtain" }, { id: 4, text: "belong" }], correctAnswerId: 1 },
+    { id: 80, question: "исчезать", options: [{ id: 1, text: "disappear" }, { id: 2, text: "obtain" }, { id: 3, text: "belong" }, { id: 4, text: "limit" }], correctAnswerId: 1 },
+    { id: 81, question: "получать", options: [{ id: 1, text: "obtain" }, { id: 2, text: "belong" }, { id: 3, text: "limit" }, { id: 4, text: "spread" }], correctAnswerId: 1 },
+    { id: 82, question: "принадлежать", options: [{ id: 1, text: "belong" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "extend" }], correctAnswerId: 1 },
+    { id: 83, question: "ограничивать", options: [{ id: 1, text: "limit" }, { id: 2, text: "spread" }, { id: 3, text: "extend" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 84, question: "прощать", options: [{ id: 1, text: "forgive" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 85, question: "распространять (-ся)", options: [{ id: 1, text: "spread" }, { id: 2, text: "extend" }, { id: 3, text: "acquire" }, { id: 4, text: "abandon" }], correctAnswerId: 1 },
+    { id: 86, question: "расширять (-ся)", options: [{ id: 1, text: "extend" }, { id: 2, text: "acquire" }, { id: 3, text: "abandon" }, { id: 4, text: "arise" }], correctAnswerId: 1 },
+    { id: 87, question: "приобретать", options: [{ id: 1, text: "acquire" }, { id: 2, text: "abandon" }, { id: 3, text: "arise" }, { id: 4, text: "possess" }], correctAnswerId: 1 },
+    { id: 88, question: "покидать", options: [{ id: 1, text: "abandon" }, { id: 2, text: "arise" }, { id: 3, text: "possess" }, { id: 4, text: "leave" }], correctAnswerId: 1 },
+    { id: 89, question: "возникать", options: [{ id: 1, text: "arise" }, { id: 2, text: "possess" }, { id: 3, text: "leave" }, { id: 4, text: "occupy" }], correctAnswerId: 1 },
+    { id: 90, question: "обладать", options: [{ id: 1, text: "possess" }, { id: 2, text: "leave" }, { id: 3, text: "occupy" }, { id: 4, text: "gain" }], correctAnswerId: 1 },
+    { id: 91, question: "оставлять", options: [{ id: 1, text: "leave" }, { id: 2, text: "occupy" }, { id: 3, text: "gain" }, { id: 4, text: "emerge" }], correctAnswerId: 1 },
+    { id: 92, question: "занимать (место)", options: [{ id: 1, text: "occupy" }, { id: 2, text: "gain" }, { id: 3, text: "emerge" }, { id: 4, text: "expand" }], correctAnswerId: 1 },
+    { id: 93, question: "получать", options: [{ id: 1, text: "gain" }, { id: 2, text: "emerge" }, { id: 3, text: "expand" }, { id: 4, text: "disappear" }], correctAnswerId: 1 },
+    { id: 94, question: "появляться", options: [{ id: 1, text: "emerge" }, { id: 2, text: "expand" }, { id: 3, text: "disappear" }, { id: 4, text: "obtain" }], correctAnswerId: 1 },
+    { id: 95, question: "расширять (-ся)", options: [{ id: 1, text: "expand" }, { id: 2, text: "disappear" }, { id: 3, text: "obtain" }, { id: 4, text: "belong" }], correctAnswerId: 1 },
+    { id: 96, question: "исчезать", options: [{ id: 1, text: "disappear" }, { id: 2, text: "obtain" }, { id: 3, text: "belong" }, { id: 4, text: "limit" }], correctAnswerId: 1 },
+    { id: 97, question: "получать", options: [{ id: 1, text: "obtain" }, { id: 2, text: "belong" }, { id: 3, text: "limit" }, { id: 4, text: "spread" }], correctAnswerId: 1 },
+    { id: 98, question: "принадлежать", options: [{ id: 1, text: "belong" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "extend" }], correctAnswerId: 1 },
+    { id: 99, question: "ограничивать", options: [{ id: 1, text: "limit" }, { id: 2, text: "spread" }, { id: 3, text: "extend" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 100, question: "прощать", options: [{ id: 1, text: "forgive" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 101, question: "распространять (-ся)", options: [{ id: 1, text: "spread" }, { id: 2, text: "extend" }, { id: 3, text: "acquire" }, { id: 4, text: "abandon" }], correctAnswerId: 1 },
+    { id: 102, question: "расширять (-ся)", options: [{ id: 1, text: "extend" }, { id: 2, text: "acquire" }, { id: 3, text: "abandon" }, { id: 4, text: "arise" }], correctAnswerId: 1 },
+    { id: 103, question: "приобретать", options: [{ id: 1, text: "acquire" }, { id: 2, text: "abandon" }, { id: 3, text: "arise" }, { id: 4, text: "possess" }], correctAnswerId: 1 },
+    { id: 104, question: "покидать", options: [{ id: 1, text: "abandon" }, { id: 2, text: "arise" }, { id: 3, text: "possess" }, { id: 4, text: "leave" }], correctAnswerId: 1 },
+    { id: 105, question: "возникать", options: [{ id: 1, text: "arise" }, { id: 2, text: "possess" }, { id: 3, text: "leave" }, { id: 4, text: "occupy" }], correctAnswerId: 1 },
+    { id: 106, question: "обладать", options: [{ id: 1, text: "possess" }, { id: 2, text: "leave" }, { id: 3, text: "occupy" }, { id: 4, text: "gain" }], correctAnswerId: 1 },
+    { id: 107, question: "оставлять", options: [{ id: 1, text: "leave" }, { id: 2, text: "occupy" }, { id: 3, text: "gain" }, { id: 4, text: "emerge" }], correctAnswerId: 1 },
+    { id: 108, question: "занимать (место)", options: [{ id: 1, text: "occupy" }, { id: 2, text: "gain" }, { id: 3, text: "emerge" }, { id: 4, text: "expand" }], correctAnswerId: 1 },
+    { id: 109, question: "получать", options: [{ id: 1, text: "gain" }, { id: 2, text: "emerge" }, { id: 3, text: "expand" }, { id: 4, text: "disappear" }], correctAnswerId: 1 },
+    { id: 110, question: "появляться", options: [{ id: 1, text: "emerge" }, { id: 2, text: "expand" }, { id: 3, text: "disappear" }, { id: 4, text: "obtain" }], correctAnswerId: 1 },
+    { id: 111, question: "расширять (-ся)", options: [{ id: 1, text: "expand" }, { id: 2, text: "disappear" }, { id: 3, text: "obtain" }, { id: 4, text: "belong" }], correctAnswerId: 1 },
+    { id: 112, question: "исчезать", options: [{ id: 1, text: "disappear" }, { id: 2, text: "obtain" }, { id: 3, text: "belong" }, { id: 4, text: "limit" }], correctAnswerId: 1 },
+    { id: 113, question: "получать", options: [{ id: 1, text: "obtain" }, { id: 2, text: "belong" }, { id: 3, text: "limit" }, { id: 4, text: "spread" }], correctAnswerId: 1 },
+    { id: 114, question: "принадлежать", options: [{ id: 1, text: "belong" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "extend" }], correctAnswerId: 1 },
+    { id: 115, question: "ограничивать", options: [{ id: 1, text: "limit" }, { id: 2, text: "spread" }, { id: 3, text: "extend" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 116, question: "прощать", options: [{ id: 1, text: "forgive" }, { id: 2, text: "limit" }, { id: 3, text: "spread" }, { id: 4, text: "acquire" }], correctAnswerId: 1 },
+    { id: 117, question: "распространять (-ся)", options: [{ id: 1, text: "spread" }, { id: 2, text: "extend" }, { id: 3, text: "acquire" }, { id: 4, text: "abandon" }], correctAnswerId: 1 },
+    { id: 118, question: "расширять (-ся)", options: [{ id: 1, text: "extend" }, { id: 2, text: "acquire" }, { id: 3, text: "abandon" }, { id: 4, text: "arise" }], correctAnswerId: 1 },
+    { id: 119, question: "приобретать", options: [{ id: 1, text: "acquire" }, { id: 2, text: "abandon" }, { id: 3, text: "arise" }, { id: 4, text: "possess" }], correctAnswerId: 1 },
+    { id: 120, question: "покидать", options: [{ id: 1, text: "abandon" }, { id: 2, text: "arise" }, { id: 3, text: "possess" }, { id: 4, text: "leave" }], correctAnswerId: 1 },
+    { id: 121, "question": "работать", "options": [{ id: 1, "text": "work" }, { id: 2, "text": "keep" }, { id: 3, "text": "help" }, { id: 4, "text": "write" }], "correctAnswerId": 1 },
+    { id: 122, "question": "хранить", "options": [{ id: 1, "text": "keep" }, { id: 2, "text": "help" }, { id: 3, "text": "write" }, { id: 4, "text": "provide" }], "correctAnswerId": 1 },
+    { id: 123, "question": "помогать", "options": [{ id: 1, "text": "help" }, { id: 2, "text": "write" }, { id: 3, "text": "provide" }, { id: 4, "text": "pay" }], "correctAnswerId": 1 },
+    { id: 124, "question": "писать", "options": [{ id: 1, "text": "write" }, { id: 2, "text": "provide" }, { id: 3, "text": "pay" }, { id: 4, "text": "lead" }], "correctAnswerId": 1 },
+    { id: 125, "question": "обеспечивать", "options": [{ id: 1, "text": "provide" }, { id: 2, "text": "pay" }, { id: 3, "text": "lead" }, { id: 4, "text": "create" }], "correctAnswerId": 1 },
+    { id: 126, "question": "платить", "options": [{ id: 1, "text": "pay" }, { id: 2, "text": "lead" }, { id: 3, "text": "create" }, { id: 4, "text": "serve" }], "correctAnswerId": 1 },
+    { id: 127, "question": "лидировать (возглавлять)", "options": [{ id: 1, "text": "lead" }, { id: 2, "text": "create" }, { id: 3, "text": "serve" }, { id: 4, "text": "build" }], "correctAnswerId": 1 },
+    { id: 128, "question": "создавать", "options": [{ id: 1, "text": "create" }, { id: 2, "text": "serve" }, { id: 3, "text": "build" }, { id: 4, "text": "develop" }], "correctAnswerId": 1 },
+    { id: 129, "question": "служить", "options": [{ id: 1, "text": "serve" }, { id: 2, "text": "build" }, { id: 3, "text": "develop" }, { id: 4, "text": "base" }], "correctAnswerId": 1 },
+    { id: 130, "question": "строить", "options": [{ id: 1, "text": "build" }, { id: 2, "text": "develop" }, { id: 3, "text": "base" }, { id: 4, "text": "realize" }], "correctAnswerId": 1 },
+    { id: 131, "question": "развивать (разрабатывать)", "options": [{ id: 1, "text": "develop" }, { id: 2, "text": "base" }, { id: 3, "text": "realize" }, { id: 4, "text": "save" }], "correctAnswerId": 1 },
+    { id: 132, "question": "базировать, размещать", "options": [{ id: 1, "text": "base" }, { id: 2, "text": "realize" }, { id: 3, "text": "save" }, { id: 4, "text": "fail" }], "correctAnswerId": 1 },
+    { id: 133, "question": "реализовать, осознавать", "options": [{ id: 1, "text": "realize" }, { id: 2, "text": "save" }, { id: 3, "text": "fail" }, { id: 4, "text": "check" }], "correctAnswerId": 1 },
+    { id: 134, "question": "сохранять (делать сбережения)", "options": [{ id: 1, "text": "save" }, { id: 2, "text": "fail" }, { id: 3, "text": "check" }, { id: 4, "text": "design" }], "correctAnswerId": 1 },
+    { id: 135, "question": "терпеть неудачу", "options": [{ id: 1, "text": "fail" }, { id: 2, "text": "check" }, { id: 3, "text": "design" }, { id: 4, "text": "claim" }], "correctAnswerId": 1 },
+    { id: 136, "question": "проверять", "options": [{ id: 1, "text": "check" }, { id: 2, "text": "design" }, { id: 3, "text": "claim" }, { id: 4, "text": "establish" }], "correctAnswerId": 1 },
+    { id: 137, "question": "разрабатывать", "options": [{ id: 1, "text": "design" }, { id: 2, "text": "claim" }, { id: 3, "text": "establish" }, { id: 4, "text": "maintain" }], "correctAnswerId": 1 },
+    { id: 138, "question": "предъявлять претензии, заявлять о правах, утверждать", "options": [{ id: 1, "text": "claim" }, { id: 2, "text": "establish" }, { id: 3, "text": "maintain" }, { id: 4, "text": "head" }], "correctAnswerId": 1 },
+    { id: 139, "question": "устанавливать", "options": [{ id: 1, "text": "establish" }, { id: 2, "text": "maintain" }, { id: 3, "text": "head" }, { id: 4, "text": "control" }], "correctAnswerId": 1 },
+    { id: 140, "question": "поддерживать", "options": [{ id: 1, "text": "maintain" }, { id: 2, "text": "head" }, { id: 3, "text": "control" }, { id: 4, "text": "apply" }], "correctAnswerId": 1 },
+    { id: 141, "question": "руководить (возглавлять)", "options": [{ id: 1, "text": "head" }, { id: 2, "text": "control" }, { id: 3, "text": "apply" }, { id: 4, "text": "manage" }], "correctAnswerId": 1 },
+    { id: 142, "question": "контролировать", "options": [{ id: 1, "text": "control" }, { id: 2, "text": "apply" }, { id: 3, "text": "manage" }, { id: 4, "text": "perform" }], "correctAnswerId": 1 },
+    { id: 143, "question": "подавать заявление, применять что-то", "options": [{ id: 1, "text": "apply" }, { id: 2, "text": "manage" }, { id: 3, "text": "perform" }, { id: 4, "text": "improve" }], "correctAnswerId": 1 },
+    { id: 144, "question": "управлять", "options": [{ id: 1, "text": "manage" }, { id: 2, "text": "perform" }, { id: 3, "text": "improve" }, { id: 4, "text": "sign" }], "correctAnswerId": 1 },
+    { id: 145, "question": "выполнять", "options": [{ id: 1, "text": "perform" }, { id: 2, "text": "improve" }, { id: 3, "text": "sign" }, { id: 4, "text": "test" }], "correctAnswerId": 1 },
+    { id: 146, "question": "улучшать", "options": [{ id: 1, "text": "improve" }, { id: 2, "text": "sign" }, { id: 3, "text": "test" }, { id: 4, "text": "prevent" }], "correctAnswerId": 1 },
+    { id: 147, "question": "подписывать", "options": [{ id: 1, "text": "sign" }, { id: 2, "text": "test" }, { id: 3, "text": "prevent" }, { id: 4, "text": "publish" }], "correctAnswerId": 1 },
+    { id: 148, "question": "проверять (тестировать)", "options": [{ id: 1, "text": "test" }, { id: 2, "text": "prevent" }, { id: 3, "text": "publish" }, { id: 4, "text": "achieve" }], "correctAnswerId": 1 },
+    { id: 149, "question": "предотвращать", "options": [{ id: 1, "text": "prevent" }, { id: 2, "text": "publish" }, { id: 3, "text": "achieve" }, { id: 4, "text": "conduct" }], "correctAnswerId": 1 },
+    { id: 150, "question": "публиковать", "options": [{ id: 1, "text": "publish" }, { id: 2, "text": "achieve" }, { id: 3, "text": "conduct" }, { id: 4, "text": "attend" }], "correctAnswerId": 1 },
+    { id: 151, "question": "достигать (добиваться чего-то)", "options": [{ id: 1, "text": "achieve" }, { id: 2, "text": "conduct" }, { id: 3, "text": "attend" }, { id: 4, "text": "complete" }], "correctAnswerId": 1 },
+    { id: 152, "question": "проводить", "options": [{ id: 1, "text": "conduct" }, { id: 2, "text": "attend" }, { id: 3, "text": "complete" }, { id: 4, "text": "handle" }], "correctAnswerId": 1 },
+    { id: 153, "question": "участвовать, посещать", "options": [{ id: 1, "text": "attend" }, { id: 2, "text": "complete" }, { id: 3, "text": "handle" }, { id: 4, "text": "deliver" }], "correctAnswerId": 1 },
+    { id: 154, "question": "выполнять", "options": [{ id: 1, "text": "complete" }, { id: 2, "text": "handle" }, { id: 3, "text": "deliver" }, { id: 4, "text": "operate" }], "correctAnswerId": 1 },
+    { id: 155, "question": "работать с чем- либо, обычн. вручную", "options": [{ id: 1, "text": "handle (Handle with care)" }, { id: 2, "text": "handle (I can handle it)" }, { id: 3, "text": "deliver" }, { id: 4, "text": "operate" }], "correctAnswerId": 1 },
+    { id: 156, "question": "справляться (напр. с расщеплять)", "options": [{ id: 1, "text": "handle (Handle with care)" }, { id: 2, "text": "handle (I can handle it)" }, { id: 3, "text": "deliver" }, { id: 4, "text": "operate" }], "correctAnswerId": 2 },
+    { id: 157, "question": "доставлять", "options": [{ id: 1, "text": "handle (Handle with care)" }, { id: 2, "text": "handle (I can handle it)" }, { id: 3, "text": "deliver" }, { id: 4, "text": "operate" }], "correctAnswerId": 3 },
+    { id: 158, "question": "управлять (обычно механизмом, машиной)", "options": [{ id: 1, "text": "handle (Handle with care)" }, { id: 2, "text": "handle (I can handle it)" }, { id: 3, "text": "deliver" }, { id: 4, "text": "operate" }], "correctAnswerId": 4 },
+    { id: 159, "question": "приказывать, заказывать", "options": [{ id: 1, "text": "order" }, { id: 2, "text": "measure" }, { id: 3, "text": "engage" }, { id: 4, "text": "train" }], "correctAnswerId": 1 },
+    { id: 160, "question": "измерять", "options": [{ id: 1, "text": "measure" }, { id: 2, "text": "engage" }, { id: 3, "text": "train" }, { id: 4, "text": "paint" }], "correctAnswerId": 1 },
+    { id: 161, "question": "входить в контакт (заниматься)", "options": [{ id: 1, "text": "engage" }, { id: 2, "text": "train" }, { id: 3, "text": "paint" }, { id: 4, "text": "direct" }], "correctAnswerId": 1 },
+    { id: 162, "question": "нанимать на работу", "options": [{ id: 1, "text": "hire" }, { id: 2, "text": "train" }, { id: 3, "text": "paint" }, { id: 4, "text": "direct" }], "correctAnswerId": 1 },
+    { id: 163, "question": "обучать", "options": [{ id: 1, "text": "train" }, { id: 2, "text": "paint" }, { id: 3, "text": "direct" }, { id: 4, "text": "solve" }], "correctAnswerId": 1 },
+    { id: 164, "question": "красить", "options": [{ id: 1, "text": "paint" }, { id: 2, "text": "direct" }, { id: 3, "text": "solve" }, { id: 4, "text": "file" }], "correctAnswerId": 1 },
+    { id: 165, "question": "руководить (управлять)", "options": [{ id: 1, "text": "direct" }, { id: 2, "text": "solve" }, { id: 3, "text": "file" }, { id: 4, "text": "employ" }], "correctAnswerId": 1 },
+    { id: 166, "question": "решать (проблему, задачу)", "options": [{ id: 1, "text": "solve" }, { id: 2, "text": "file" }, { id: 3, "text": "employ" }, { id: 4, "text": "make" }], "correctAnswerId": 1 },
+    { id: 167, "question": "вносить в записи", "options": [{ id: 1, "text": "file" }, { id: 2, "text": "employ" }, { id: 3, "text": "make" }, { id: 4, "text": "try" }], "correctAnswerId": 1 },
+    { id: 168, "question": "принимать на работу", "options": [{ id: 1, "text": "employ" }, { id: 2, "text": "make" }, { id: 3, "text": "try" }, { id: 4, "text": "happen" }], "correctAnswerId": 1 },
+    { id: 169, "question": "делать, заставлять", "options": [{ id: 1, "text": "make" }, { id: 2, "text": "try" }, { id: 3, "text": "happen" }, { id: 4, "text": "set" }], "correctAnswerId": 1 },
+    { id: 170, "question": "пробовать, пытаться", "options": [{ id: 1, "text": "try" }, { id: 2, "text": "happen" }, { id: 3, "text": "set" }, { id: 4, "text": "seek" }], "correctAnswerId": 1 },
+    { id: 171, "question": "случаться", "options": [{ id: 1, "text": "happen" }, { id: 2, "text": "set" }, { id: 3, "text": "seek" }, { id: 4, "text": "pass" }], "correctAnswerId": 1 },
+    { id: 172, "question": "устанавливать", "options": [{ id: 1, "text": "set" }, { id: 2, "text": "seek" }, { id: 3, "text": "pass" }, { id: 4, "text": "attempt" }], "correctAnswerId": 1 },
+    { id: 173, "question": "искать", "options": [{ id: 1, "text": "seek" }, { id: 2, "text": "pass" }, { id: 3, "text": "attempt" }, { id: 4, "text": "connect" }], "correctAnswerId": 1 },
+    { id: 174, "question": "проходить, передавать", "options": [{ id: 1, "text": "pass" }, { id: 2, "text": "attempt" }, { id: 3, "text": "connect" }, { id: 4, "text": "record" }], "correctAnswerId": 1 },
+    { id: 175, "question": "пытаться", "options": [{ id: 1, "text": "attempt" }, { id: 2, "text": "connect" }, { id: 3, "text": "record" }, { id: 4, "text": "locate" }], "correctAnswerId": 1 },
+    { id: 176, "question": "подключать (соединять)", "options": [{ id: 1, "text": "connect" }, { id: 2, "text": "record" }, { id: 3, "text": "locate" }, { id: 4, "text": "search" }], "correctAnswerId": 1 },
+    { id: 177, "question": "записывать", "options": [{ id: 1, "text": "record" }, { id: 2, "text": "locate" }, { id: 3, "text": "search" }, { id: 4, "text": "select" }], "correctAnswerId": 1 },
+    { id: 178, "question": "обнаружить (выяснить местоположение)", "options": [{ id: 1, "text": "locate" }, { id: 2, "text": "search" }, { id: 3, "text": "select" }, { id: 4, "text": "launch" }], "correctAnswerId": 1 },
+    { id: 179, "question": "искать", "options": [{ id: 1, "text": "search" }, { id: 2, "text": "select" }, { id: 3, "text": "launch" }, { id: 4, "text": "adjust" }], "correctAnswerId": 1 },
+    { id: 180, "question": "выбирать", "options": [{ id: 1, "text": "select" }, { id: 2, "text": "launch" }, { id: 3, "text": "adjust" }, { id: 4, "text": "succeed" }], "correctAnswerId": 1 },
+    { id: 181, "question": "запускать", "options": [{ id: 1, "text": "launch" }, { id: 2, "text": "adjust" }, { id: 3, "text": "succeed" }, { id: 4, "text": "review" }], "correctAnswerId": 1 },
+    { id: 182, "question": "настраивать", "options": [{ id: 1, "text": "adjust" }, { id: 2, "text": "succeed" }, { id: 3, "text": "review" }, { id: 4, "text": "arrange (an event)" }], "correctAnswerId": 1 },
+    { id: 183, "question": "достигать цели (преуспевать в чем-то)", "options": [{ id: 1, "text": "succeed" }, { id: 2, "text": "review" }, { id: 3, "text": "arrange (an event)" }, { id: 4, "text": "benefit" }], "correctAnswerId": 1 },
+    { id: 184, "question": "пересматривать, делать обзор", "options": [{ id: 1, "text": "review" }, { id: 2, "text": "arrange (an event)" }, { id: 3, "text": "benefit" }, { id: 4, "text": "coach" }], "correctAnswerId": 1 },
+    { id: 185, "question": "организовывать (мероприятие)", "options": [{ id: 1, "text": "arrange (an event)" }, { id: 2, "text": "benefit" }, { id: 3, "text": "coach" }, { id: 4, "text": "exercise" }], "correctAnswerId": 1 },
+    { id: 186, "question": "получать выгоду", "options": [{ id: 1, "text": "benefit" }, { id: 2, "text": "coach" }, { id: 3, "text": "exercise" }, { id: 4, "text": "monitor" }], "correctAnswerId": 1 },
+    { id: 187, "question": "тренировать", "options": [{ id: 1, "text": "coach" }, { id: 2, "text": "exercise" }, { id: 3, "text": "monitor" }, { id: 4, "text": "supply" }], "correctAnswerId": 1 },
+    { id: 188, "question": "упражняться", "options": [{ id: 1, "text": "exercise" }, { id: 2, "text": "monitor" }, { id: 3, "text": "supply" }, { id: 4, "text": "assist" }], "correctAnswerId": 1 },
+    { id: 189, "question": "наблюдать", "options": [{ id: 1, "text": "monitor" }, { id: 2, "text": "supply" }, { id: 3, "text": "assist" }, { id: 4, "text": "construct" }], "correctAnswerId": 1 },
+    { id: 190, "question": "обеспечивать", "options": [{ id: 1, "text": "supply" }, { id: 2, "text": "assist" }, { id: 3, "text": "construct" }, { id: 4, "text": "schedule" }], "correctAnswerId": 1 },
+    { id: 191, "question": "помогать", "options": [{ id: 1, "text": "assist" }, { id: 2, "text": "construct" }, { id: 3, "text": "schedule" }, { id: 4, "text": "assign" }], "correctAnswerId": 1 },
+    { id: 192, "question": "строить", "options": [{ id: 1, "text": "construct" }, { id: 2, "text": "schedule" }, { id: 3, "text": "assign" }, { id: 4, "text": "dismiss" }], "correctAnswerId": 1 },
+    { id: 193, "question": "составлять график", "options": [{ id: 1, "text": "schedule" }, { id: 2, "text": "assign" }, { id: 3, "text": "dismiss" }, { id: 4, "text": "practice" }], "correctAnswerId": 1 },
+    { id: 194, "question": "назначать, давать задание", "options": [{ id: 1, "text": "assign" }, { id: 2, "text": "dismiss" }, { id: 3, "text": "practice" }, { id: 4, "text": "illustrate" }], "correctAnswerId": 1 },
+    { id: 195, "question": "увольнять", "options": [{ id: 1, "text": "dismiss" }, { id: 2, "text": "practice" }, { id: 3, "text": "illustrate" }, { id: 4, "text": "deserve" }], "correctAnswerId": 1 },
+    { id: 196, "question": "практиковаться", "options": [{ id: 1, "text": "practice" }, { id: 2, "text": "illustrate" }, { id: 3, "text": "deserve" }, { id: 4, "text": "face (something) [feɪs]" }], "correctAnswerId": 1 },
+    { id: 197, "question": "иллюстрировать", "options": [{ id: 1, "text": "illustrate" }, { id: 2, "text": "deserve" }, { id: 3, "text": "face (something) [feɪs]" }, { id: 4, "text": "cause" }], "correctAnswerId": 1 },
+    { id: 198, "question": "заслуживать чего-то", "options": [{ id: 1, "text": "deserve" }, { id: 2, "text": "face (something) [feɪs]" }, { id: 3, "text": "cause" }, { id: 4, "text": "teach (taught, taught)" }], "correctAnswerId": 1 },
+    { id: 199, "question": "встретиться с чем-то (напр. С проблемой)", "options": [{ id: 1, "text": "face (something) [feɪs]" }, { id: 2, "text": "cause" }, { id: 3, "text": "teach (taught, taught)" }, { id: 4, "text": "can (could)" }], "correctAnswerId": 1 },
+    { id: 200, "question": "причинять что-либо", "options": [{ id: 1, "text": "cause" }, { id: 2, "text": "teach (taught, taught)" }, { id: 3, "text": "can (could)" }, { id: 4, "text": "know (knew, known)" }], "correctAnswerId": 1 },
+    { id: 201, "question": "учить (обучать)", "options": [{ id: 1, "text": "teach (taught, taught)" }, { id: 2, "text": "can (could)" }, { id: 3, "text": "know (knew, known)" }, { id: 4, "text": "think (thought, thought)" }], "correctAnswerId": 1 },
+    { id: 202, "question": "мочь, быть способным", "options": [{ id: 1, "text": "can (could)" }, { id: 2, "text": "know (knew, known)" }, { id: 3, "text": "think (thought, thought)" }, { id: 4, "text": "see (saw, seen)" }], "correctAnswerId": 1 },
+    { id: 203, "question": "знать", "options": [{ id: 1, "text": "know (knew, known)" }, { id: 2, "text": "think (thought, thought)" }, { id: 3, "text": "see (saw, seen)" }, { id: 4, "text": "want" }], "correctAnswerId": 1 },
+    { id: 204, "question": "думать", "options": [{ id: 1, "text": "think (thought, thought)" }, { id: 2, "text": "see (saw, seen)" }, { id: 3, "text": "want" }, { id: 4, "text": "look" }], "correctAnswerId": 1 },
+    { id: 205, "question": "видеть", "options": [{ id: 1, "text": "see (saw, seen)" }, { id: 2, "text": "want" }, { id: 3, "text": "look" }, { id: 4, "text": "need" }], "correctAnswerId": 1 },
+    { id: 206, "question": "хотеть", "options": [{ id: 1, "text": "want" }, { id: 2, "text": "look" }, { id: 3, "text": "need" }, { id: 4, "text": "feel (felt, felt)" }], "correctAnswerId": 1 },
+    { id: 207, "question": "смотреть", "options": [{ id: 1, "text": "look" }, { id: 2, "text": "need" }, { id: 3, "text": "feel (felt, felt)" }, { id: 4, "text": "mean (meant, meant)" }], "correctAnswerId": 1 },
+    { id: 208, "question": "нуждаться", "options": [{ id: 1, "text": "need" }, { id: 2, "text": "feel (felt, felt)" }, { id: 3, "text": "mean (meant, meant)" }, { id: 4, "text": "seem" }], "correctAnswerId": 1 },
+    { id: 209, "question": "чувствовать", "options": [{ id: 1, "text": "feel (felt, felt)" }, { id: 2, "text": "mean (meant, meant)" }, { id: 3, "text": "seem" }, { id: 4, "text": "hear (heard, heard)" }], "correctAnswerId": 1 },
+    { id: 210, "question": "значить (иметь ввиду)", "options": [{ id: 1, "text": "mean (meant, meant)" }, { id: 2, "text": "seem" }, { id: 3, "text": "hear (heard, heard)" }, { id: 4, "text": "like" }], "correctAnswerId": 1 },
+    { id: 211, "question": "казаться", "options": [{ id: 1, "text": "seem" }, { id: 2, "text": "hear (heard, heard)" }, { id: 3, "text": "like" }, { id: 4, "text": "believe" }], "correctAnswerId": 1 },
+    { id: 212, "question": "слышать", "options": [{ id: 1, "text": "hear (heard, heard)" }, { id: 2, "text": "like" }, { id: 3, "text": "believe" }, { id: 4, "text": "learn (learnt, learnt)" }], "correctAnswerId": 1 },
+    { id: 213, "question": "нравиться (любить)", "options": [{ id: 1, "text": "like" }, { id: 2, "text": "believe" }, { id: 3, "text": "learn (learnt, learnt)" }, { id: 4, "text": "watch" }], "correctAnswerId": 1 },
+    { id: 214, "question": "верить", "options": [{ id: 1, "text": "believe" }, { id: 2, "text": "learn (learnt, learnt)" }, { id: 3, "text": "watch" }, { id: 4, "text": "read (read, read)" }], "correctAnswerId": 1 },
+    { id: 215, "question": "изучать", "options": [{ id: 1, "text": "learn (learnt, learnt)" }, { id: 2, "text": "watch" }, { id: 3, "text": "read (read, read)" }, { id: 4, "text": "remember" }], "correctAnswerId": 1 },
+    { id: 216, "question": "смотреть (сторожить)", "options": [{ id: 1, "text": "watch" }, { id: 2, "text": "read (read, read)" }, { id: 3, "text": "remember" }, { id: 4, "text": "love" }], "correctAnswerId": 1 },
+    { id: 217, "question": "читать", "options": [{ id: 1, "text": "read (read, read)" }, { id: 2, "text": "remember" }, { id: 3, "text": "love" }, { id: 4, "text": "decide" }], "correctAnswerId": 1 },
+    { id: 218, "question": "помнить", "options": [{ id: 1, "text": "remember" }, { id: 2, "text": "love" }, { id: 3, "text": "decide" }, { id: 4, "text": "hope" }], "correctAnswerId": 1 },
+    { id: 219, "question": "любить", "options": [{ id: 1, "text": "love" }, { id: 2, "text": "decide" }, { id: 3, "text": "hope" }, { id: 4, "text": "listen" }], "correctAnswerId": 1 },
+    { id: 220, "question": "решать", "options": [{ id: 1, "text": "decide" }, { id: 2, "text": "hope" }, { id: 3, "text": "listen" }, { id: 4, "text": "focus" }], "correctAnswerId": 1 },
+    { id: 221, "question": "надеяться", "options": [{ id: 1, "text": "hope" }, { id: 2, "text": "listen" }, { id: 3, "text": "focus" }, { id: 4, "text": "plan" }], "correctAnswerId": 1 },
+    { id: 222, "question": "слушать", "options": [{ id: 1, "text": "listen" }, { id: 2, "text": "focus" }, { id: 3, "text": "plan" }, { id: 4, "text": "note" }], "correctAnswerId": 1 },
+    { id: 223, "question": "сосредоточиваться (на чем- либо)", "options": [{ id: 1, "text": "focus" }, { id: 2, "text": "plan" }, { id: 3, "text": "note" }, { id: 4, "text": "determine" }], "correctAnswerId": 1 },
+    { id: 224, "question": "планировать", "options": [{ id: 1, "text": "plan" }, { id: 2, "text": "note" }, { id: 3, "text": "determine" }, { id: 4, "text": "recognize" }], "correctAnswerId": 1 },
+    { id: 225, "question": "замечать, обращать внимание", "options": [{ id: 1, "text": "note" }, { id: 2, "text": "determine" }, { id: 3, "text": "recognize" }, { id: 4, "text": "compare" }], "correctAnswerId": 1 },
+    { id: 226, "question": "определять", "options": [{ id: 1, "text": "determine" }, { id: 2, "text": "recognize" }, { id: 3, "text": "compare" }, { id: 4, "text": "miss (someone)" }], "correctAnswerId": 1 },
+    { id: 227, "question": "узнавать", "options": [{ id: 1, "text": "recognize" }, { id: 2, "text": "compare" }, { id: 3, "text": "miss (someone)" }, { id: 4, "text": "study" }], "correctAnswerId": 1 },
+    { id: 228, "question": "сравнивать", "options": [{ id: 1, "text": "compare" }, { id: 2, "text": "miss (someone)" }, { id: 3, "text": "study" }, { id: 4, "text": "forget (forgot, forgotten)" }], "correctAnswerId": 1 },
+    { id: 229, "question": "скучать (по кому-то\чему-то)", "options": [{ id: 1, "text": "miss (someone)" }, { id: 2, "text": "study" }, { id: 3, "text": "forget (forgot, forgotten)" }, { id: 4, "text": "imagine" }], "correctAnswerId": 1 },
+    { id: 230, "question": "изучать (учиться)", "options": [{ id: 1, "text": "study" }, { id: 2, "text": "forget (forgot, forgotten)" }, { id: 3, "text": "imagine" }, { id: 4, "text": "discover" }], "correctAnswerId": 1 },
+    { id: 231, "question": "забывать", "options": [{ id: 1, "text": "forget (forgot, forgotten)" }, { id: 2, "text": "imagine" }, { id: 3, "text": "discover" }, { id: 4, "text": "worry" }], "correctAnswerId": 1 },
+    { id: 232, "question": "воображать", "options": [{ id: 1, "text": "imagine" }, { id: 2, "text": "discover" }, { id: 3, "text": "worry" }, { id: 4, "text": "wait" }], "correctAnswerId": 1 },
+    { id: 233, "question": "совершать открытие", "options": [{ id: 1, "text": "discover" }, { id: 2, "text": "worry" }, { id: 3, "text": "wait" }, { id: 4, "text": "experience" }], "correctAnswerId": 1 },
+    { id: 234, "question": "беспокоиться", "options": [{ id: 1, "text": "worry" }, { id: 2, "text": "wait" }, { id: 3, "text": "experience" }, { id: 4, "text": "tend" }], "correctAnswerId": 1 },
+    { id: 235, "question": "ждать", "options": [{ id: 1, "text": "wait" }, { id: 2, "text": "experience" }, { id: 3, "text": "tend" }, { id: 4, "text": "notice" }], "correctAnswerId": 1 },
+    { id: 236, "question": "переживать (испытывать что- то на себе)", "options": [{ id: 1, "text": "experience" }, { id: 2, "text": "tend" }, { id: 3, "text": "notice" }, { id: 4, "text": "wish" }], "correctAnswerId": 1 },
+    { id: 237, "question": "иметь склонность (к чему-то)", "options": [{ id: 1, "text": "tend" }, { id: 2, "text": "notice" }, { id: 3, "text": "wish" }, { id: 4, "text": "figure out" }], "correctAnswerId": 1 },
+    { id: 238, "question": "замечать", "options": [{ id: 1, "text": "notice" }, { id: 2, "text": "wish" }, { id: 3, "text": "figure out" }, { id: 4, "text": "suffer" }], "correctAnswerId": 1 },
+    { id: 239, "question": "желать", "options": [{ id: 1, "text": "wish" }, { id: 2, "text": "figure out" }, { id: 3, "text": "suffer" }, { id: 4, "text": "recall" }], "correctAnswerId": 1 },
+    { id: 240, "question": "выяснять (находить решение)", "options": [{ id: 1, "text": "figure out" }, { id: 2, "text": "suffer" }, { id: 3, "text": "recall" }, { id: 4, "text": "stare" }], "correctAnswerId": 1 },
+    { id: 241, "question": "страдать", "options": [{ id: 1, "text": "suffer" }, { id: 2, "text": "recall" }, { id: 3, "text": "stare" }, { id: 4, "text": "examine" }], "correctAnswerId": 1 },
+    { id: 242, "question": "вспоминать", "options": [{ id: 1, "text": "recall" }, { id: 2, "text": "stare" }, { id: 3, "text": "examine" }, { id: 4, "text": "define" }], "correctAnswerId": 1 },
+    { id: 243, "question": "пристально смотреть, пялиться", "options": [{ id: 1, "text": "stare" }, { id: 2, "text": "examine" }, { id: 3, "text": "define" }, { id: 4, "text": "observe" }], "correctAnswerId": 1 },
+    { id: 244, "question": "проверять (изучать)", "options": [{ id: 1, "text": "examine" }, { id: 2, "text": "define" }, { id: 3, "text": "observe" }, { id: 4, "text": "count" }], "correctAnswerId": 1 },
+    { id: 245, "question": "определять", "options": [{ id: 1, "text": "define" }, { id: 2, "text": "observe" }, { id: 3, "text": "count" }, { id: 4, "text": "associate" }], "correctAnswerId": 1 },
+    { id: 246, "question": "наблюдать", "options": [{ id: 1, "text": "observe" }, { id: 2, "text": "count" }, { id: 3, "text": "associate" }, { id: 4, "text": "view" }], "correctAnswerId": 1 },
+    { id: 247, "question": "считать", "options": [{ id: 1, "text": "count" }, { id: 2, "text": "associate" }, { id: 3, "text": "view" }, { id: 4, "text": "remind" }], "correctAnswerId": 1 },
+    { id: 248, "question": "ассоциировать (с чем-то)", "options": [{ id: 1, "text": "associate" }, { id: 2, "text": "view" }, { id: 3, "text": "remind" }, { id: 4, "text": "hate" }], "correctAnswerId": 1 },
+    { id: 249, "question": "смотреть", "options": [{ id: 1, "text": "view" }, { id: 2, "text": "remind" }, { id: 3, "text": "hate" }, { id: 4, "text": "intend" }], "correctAnswerId": 1 },
+    { id: 250, "question": "напоминать", "options": [{ id: 1, "text": "remind" }, { id: 2, "text": "hate" }, { id: 3, "text": "intend" }, { id: 4, "text": "explore" }], "correctAnswerId": 1 },
+    { id: 251, "question": "ненавидеть", "options": [{ id: 1, "text": "hate" }, { id: 2, "text": "intend" }, { id: 3, "text": "explore" }, { id: 4, "text": "predict" }], "correctAnswerId": 1 },
+    { id: 252, "question": "намереваться", "options": [{ id: 1, "text": "intend" }, { id: 2, "text": "explore" }, { id: 3, "text": "predict" }, { id: 4, "text": "acknowledge" }], "correctAnswerId": 1 },
+    { id: 253, "question": "исследовать", "options": [{ id: 1, "text": "explore" }, { id: 2, "text": "predict" }, { id: 3, "text": "acknowledge" }, { id: 4, "text": "fear" }], "correctAnswerId": 1 },
+    { id: 254, "question": "предсказывать", "options": [{ id: 1, "text": "predict" }, { id: 2, "text": "acknowledge" }, { id: 3, "text": "fear" }, { id: 4, "text": "conclude" }], "correctAnswerId": 1 },
+    { id: 255, "question": "признавать, подтверждать получение", "options": [{ id: 1, "text": "acknowledge" }, { id: 2, "text": "fear" }, { id: 3, "text": "conclude" }, { id: 4, "text": "prefer" }], "correctAnswerId": 1 },
+    { id: 256, "question": "бояться", "options": [{ id: 1, "text": "fear" }, { id: 2, "text": "conclude" }, { id: 3, "text": "prefer" }, { id: 4, "text": "appreciate" }], "correctAnswerId": 1 },
+    { id: 257, "question": "делать вывод", "options": [{ id: 1, "text": "conclude" }, { id: 2, "text": "prefer" }, { id: 3, "text": "appreciate" }, { id: 4, "text": "trust" }], "correctAnswerId": 1 },
+    { id: 258, "question": "предпочитать", "options": [{ id: 1, "text": "prefer" }, { id: 2, "text": "appreciate" }, { id: 3, "text": "trust" }, { id: 4, "text": "rely on" }], "correctAnswerId": 1 },
+    { id: 259, "question": "ценить", "options": [{ id: 1, "text": "appreciate" }, { id: 2, "text": "trust" }, { id: 3, "text": "rely on" }, { id: 4, "text": "question" }], "correctAnswerId": 1 },
+    { id: 260, "question": "доверять", "options": [{ id: 1, "text": "trust" }, { id: 2, "text": "rely on" }, { id: 3, "text": "question" }, { id: 4, "text": "regard" }], "correctAnswerId": 1 },
+    { id: 261, "question": "полагаться на", "options": [{ id: 1, "text": "rely on" }, { id: 2, "text": "question" }, { id: 3, "text": "regard" }, { id: 4, "text": "suspect" }], "correctAnswerId": 1 },
+    { id: 262, "question": "подвергать сомнению, допрашивать", "options": [{ id: 1, "text": "question" }, { id: 2, "text": "regard" }, { id: 3, "text": "suspect" }, { id: 4, "text": "suppose" }], "correctAnswerId": 1 },
+    { id: 263, "question": "учитывать, считать кем-либо \ чем-либо", "options": [{ id: 1, "text": "regard" }, { id: 2, "text": "suspect" }, { id: 3, "text": "suppose" }, { id: 4, "text": "perceive" }], "correctAnswerId": 1 },
+    { id: 264, "question": "подозревать", "options": [{ id: 1, "text": "suspect" }, { id: 2, "text": "suppose" }, { id: 3, "text": "perceive" }, { id: 4, "text": "inspire" }], "correctAnswerId": 1 },
+    { id: 265, "question": "предполагать", "options": [{ id: 1, "text": "suppose" }, { id: 2, "text": "perceive" }, { id: 3, "text": "inspire" }, { id: 4, "text": "analyze" }], "correctAnswerId": 1 },
+    { id: 266, "question": "воспринимать", "options": [{ id: 1, "text": "perceive" }, { id: 2, "text": "inspire" }, { id: 3, "text": "analyze" }, { id: 4, "text": "concentrate" }], "correctAnswerId": 1 },
+    { id: 267, "question": "вдохновлять", "options": [{ id: 1, "text": "inspire" }, { id: 2, "text": "analyze" }, { id: 3, "text": "concentrate" }, { id: 4, "text": "smell (smelt, smelt)" }], "correctAnswerId": 1 },
+    { id: 268, "question": "анализировать", "options": [{ id: 1, "text": "analyze" }, { id: 2, "text": "concentrate" }, { id: 3, "text": "smell (smelt, smelt)" }, { id: 4, "text": "glance" }], "correctAnswerId": 1 },
+    { id: 269, "question": "сосредоточиваться", "options": [{ id: 1, "text": "concentrate" }, { id: 2, "text": "smell (smelt, smelt)" }, { id: 3, "text": "glance" }, { id: 4, "text": "dream (dreamt, dreamt)" }], "correctAnswerId": 1 },
+    { id: 270, "question": "нюхать, пахнуть", "options": [{ id: 1, "text": "smell (smelt, smelt)" }, { id: 2, "text": "glance" }, { id: 3, "text": "dream (dreamt, dreamt)" }, { id: 4, "text": "react" }], "correctAnswerId": 1 },
+    { id: 271, "question": "смотреть (бросать взгляд)", "options": [{ id: 1, "text": "glance" }, { id: 2, "text": "dream (dreamt, dreamt)" }, { id: 3, "text": "react" }, { id: 4, "text": "choose" }], "correctAnswerId": 1 },
+    { id: 272, "question": "мечтать (видеть сны)", "options": [{ id: 1, "text": "dream (dreamt, dreamt)" }, { id: 2, "text": "react" }, { id: 3, "text": "choose" }, { id: 4, "text": "expect" }], "correctAnswerId": 1 },
+    { id: 273, "question": "реагировать", "options": [{ id: 1, "text": "react" }, { id: 2, "text": "choose" }, { id: 3, "text": "expect" }, { id: 4, "text": "miss" }], "correctAnswerId": 1 },
+    { id: 274, "question": "выбирать", "options": [{ id: 1, "text": "choose" }, { id: 2, "text": "expect" }, { id: 3, "text": "miss" }, { id: 4, "text": "plan" }], "correctAnswerId": 1 },
+    { id: 275, "question": "ожидать", "options": [{ id: 1, "text": "expect" }, { id: 2, "text": "miss" }, { id: 3, "text": "plan" }, { id: 4, "text": "note" }], "correctAnswerId": 1 },
+    { id: 276, "question": "скучать (по кому-то\\чему-то)", "options": [{ id: 1, "text": "miss" }, { id: 2, "text": "plan" }, { id: 3, "text": "note" }, { id: 4, "text": "decide" }], "correctAnswerId": 1 },
+    { id: 277, "question": "планировать", "options": [{ id: 1, "text": "plan" }, { id: 2, "text": "note" }, { id: 3, "text": "decide" }, { id: 4, "text": "recognize" }], "correctAnswerId": 1 },
+    { id: 278, "question": "замечать", "options": [{ id: 1, "text": "note" }, { id: 2, "text": "decide" }, { id: 3, "text": "recognize" }, { id: 4, "text": "compare" }], "correctAnswerId": 1 },
+    { id: 279, "question": "решать", "options": [{ id: 1, "text": "decide" }, { id: 2, "text": "recognize" }, { id: 3, "text": "compare" }, { id: 4, "text": "miss" }], "correctAnswerId": 1 },
+    { id: 280, "question": "узнавать", "options": [{ id: 1, "text": "recognize" }, { id: 2, "text": "compare" }, { id: 3, "text": "miss" }, { id: 4, "text": "study" }], "correctAnswerId": 1 },
+    { id: 281, "question": "сравнивать", "options": [{ id: 1, "text": "compare" }, { id: 2, "text": "miss" }, { id: 3, "text": "study" }, { id: 4, "text": "forget (forgot, forgotten)" }], "correctAnswerId": 1 },
+    { id: 282, "question": "скучать", "options": [{ id: 1, "text": "miss" }, { id: 2, "text": "study" }, { id: 3, "text": "forget (forgot, forgotten)" }, { id: 4, "text": "imagine" }], "correctAnswerId": 1 },
+    { id: 283, "question": "учиться", "options": [{ id: 1, "text": "study" }, { id: 2, "text": "forget (forgot, forgotten)" }, { id: 3, "text": "imagine" }, { id: 4, "text": "discover" }], "correctAnswerId": 1 }
+    ];
 
-        let currentQuestion = 0;
 
-        function displayQuestion() {
-            const questionElement = document.getElementById("question");
-            const optionsElement = document.getElementById("options");
-            questionElement.innerHTML = `<h3 class="nes-text is-primary">${vocabulary[currentQuestion].question}</h3>`;
-            optionsElement.innerHTML = "";
-            vocabulary[currentQuestion].options.forEach(option => {
-                const optionButton = document.createElement("button");
-                optionButton.className = "nes-btn is-warning me-2 mb-2";
-                optionButton.innerHTML = option;
-                optionButton.addEventListener("click", () => checkAnswer(option));
-                optionsElement.appendChild(optionButton);
-            });
-        }
+// Функция для перемешивания элементов массива
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
-        function checkAnswer(selectedOption) {
-            const answerElement = document.getElementById("answer");
-            if (selectedOption === vocabulary[currentQuestion].correctAnswer) {
-                answerElement.innerHTML = `<p class="nes-text is-success">Правильно!</p>`;
-            } else {
-                answerElement.innerHTML = `<p class="nes-text is-error">Неправильно</p>`;
-            }
-            document.getElementById("nextButton").disabled = false;
-        }
+let currentQuestion = 0;
 
-        function nextQuestion() {
-            const answerElement = document.getElementById("answer");
-            answerElement.innerHTML = "";
-            document.getElementById("nextButton").disabled = true;
-            currentQuestion++;
-            if (currentQuestion < vocabulary.length) {
-                displayQuestion();
-            } else {
-                document.getElementById("question").innerHTML = `<h3 class="nes-text is-primary">Игра окончена. Поздравляем!</h3>`;
-                document.getElementById("options").innerHTML = "";
-                document.getElementById("nextButton").style.display = "none";
-            }
-        }
+function displayQuestion() {
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    questionElement.innerHTML = `<h3 class="nes-text is-primary">${vocabulary[currentQuestion].question}</h3>`;
+    optionsElement.innerHTML = "";
+    
+    // Перемешиваем варианты ответов перед их отображением
+    const shuffledOptions = [...vocabulary[currentQuestion].options];
+    shuffleArray(shuffledOptions);
 
+    shuffledOptions.forEach(option => {
+        const optionButton = document.createElement("button");
+        optionButton.id = `option_${option.id}`;
+        optionButton.className = "nes-btn is-warning me-2 mb-2";
+        optionButton.innerHTML = option.text;
+        optionButton.addEventListener("click", () => checkAnswer(option.id));
+        optionsElement.appendChild(optionButton);
+    });
+}
+
+function checkAnswer(selectedOptionId) {
+    const answerElement = document.getElementById("answer");
+    if (selectedOptionId === vocabulary[currentQuestion].correctAnswerId) {
+        answerElement.innerHTML = `<p class="nes-text is-success">Правильно!</p>`;
+    } else {
+        answerElement.innerHTML = `<p class="nes-text is-error">Неправильно</p>`;
+    }
+    document.getElementById("nextButton").disabled = false;
+}
+
+function nextQuestion() {
+    const answerElement = document.getElementById("answer");
+    answerElement.innerHTML = "";
+    document.getElementById("nextButton").disabled = true;
+    currentQuestion++;
+    if (currentQuestion < vocabulary.length) {
         displayQuestion();
+    } else {
+        document.getElementById("question").innerHTML = `<h3 class="nes-text is-primary">Игра окончена. Поздравляем!</h3>`;
+        document.getElementById("options").innerHTML = "";
+        document.getElementById("nextButton").style.display = "none";
+    }
+}
+
+displayQuestion();
     </script>
 </body>
 </html>
